@@ -45,7 +45,6 @@ let eventController = {
     })
   },
   create: (req, res) => {
-    // console.log(req.body.startDate + req.body.startTime);
     Event.create({
       name: req.body.name,
       startDate: req.body.startDate,

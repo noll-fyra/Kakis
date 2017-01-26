@@ -8,8 +8,8 @@ const upload = multer({dest: './uploads/'})
 
 router.get('/', eventController.index)
 router.get('/list', eventController.list)
+
 router.get('/new', isLoggedIn, eventController.new)
-//router.get('/myindex', isLoggedIn, eventController.myindex)
 router.post('/new', isLoggedIn, upload.single('myFile'), eventController.create)
 
 router.post('/cat', eventController.search)
@@ -18,8 +18,8 @@ router.get('/:id', eventController.show)
 router.use(isLoggedIn)
 router.get('/:id/edit', eventController.edit)
 router.put('/:id/edit', eventController.put)
-router.get('/:id/delete', eventController.delete)
-router.get('/:id/join', participantController.join)
-router.get('/:id/cancel', participantController.cancel)
+router.delete('/:id/delete', eventController.delete)
+router.put('/:id/join', participantController.join)
+router.put('/:id/cancel', participantController.cancel)
 
 module.exports = router

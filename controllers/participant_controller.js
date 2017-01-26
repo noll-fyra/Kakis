@@ -34,7 +34,8 @@ let participantController = {
   },
   cancel: (req, res) => {
     Participant.findOne({event: req.params.id, user: req.user.id})
-    .populate('event').exec((err, participation) => {
+    .populate('event')
+    .exec((err, participation) => {
       if (participation.event.creator.equals(req.user.id)) {
         req.flash('error', 'Could withdraw from your own event.')
         res.redirect(`/event/${participation.event._id}`)

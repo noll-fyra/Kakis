@@ -4,13 +4,17 @@ const User = require('../models/user')
 const messageController = require('./message_controller')
 
 let chatboxController = {
-
-  list: (req, res) => {
+  create: (req, res) => {
     if (req.body.id === req.user.id) {
       res.redirect('/user/profile')
       return
     }
-    Chatbox.find({ $or:[ {$and: [{firstuser: req.user.id}, {seconduser: req.body.id}]}, {$and: [{firstuser: req.body.id}, {seconduser: req.user.id}]}]}).exec((err, chatboxs) => {
+
+    Chatbox.find(
+      { $or: [ {$and: [{firstuser: req.user.id}, {seconduser: req.body.id}]},
+          {$and: [{firstuser: req.body.id}, {seconduser: req.user.id}]}]
+      })
+    .exec((err, chatboxs) => {
       if (!chatboxs || chatboxs.length === 0) {
         Chatbox.create({
           firstuser: req.user.id,
@@ -26,5 +30,3 @@ let chatboxController = {
 }
 
 module.exports = chatboxController
-
-//

@@ -20,10 +20,6 @@ var aserver = require('http').createServer(app)
 var io = require('socket.io').listen(aserver)
 global.io = io
 
-const server = aserver.listen(process.env.PORT || 3000, () => {
-  console.log('Server up and listening to port 3000')
-})
-
 require('dotenv').config({silent: true})
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1/bfittest')
@@ -66,7 +62,9 @@ app.use('/auth', authRoutes)
 app.use('/user', userRoutes)
 app.use('/event', eventRoutes)
 
-
+const server = aserver.listen(process.env.PORT || 3000, () => {
+  console.log('Server up and listening to port 3000')
+})
 
 io.on('connection', function (socket) {
   console.log('We have user connected !')

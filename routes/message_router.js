@@ -3,9 +3,9 @@ const messageController = require('../controllers/message_controller')
 const chatboxController = require('../controllers/chatbox_controller')
 const router = express.Router({mergeParams: true})
 
-router.get('/new', messageController.new)
-router.post('/:id', messageController.create)
+router.post('/', chatboxController.create)
+
 router.get('/:id', messageController.list)
-router.post('/', chatboxController.list)
+router.post('/:id', messageController.create)
 
 module.exports = router

@@ -8,17 +8,16 @@ const upload = multer({dest: './uploads/'})
 const router = express.Router()
 
 router.get('/signup', userController.signup)
-
 router.post('/signup', userController.create)
-router.post('/profile', userController.profile)
+
+router.get('/member/:id', userController.profile)
 
 router.use(isLoggedIn)
-
-router.get('/delete', userController.delete)
-router.get('/avatar', userController.avatar)
-router.put('/edit', upload.single('myFile'), userController.update)
+router.use(`/message`, messageRouter)
 
 router.get(`/profile`, userController.show)
 router.get(`/edit`, userController.edit)
-router.use(`/message`, messageRouter)
+router.put('/edit', upload.single('myFile'), userController.update)
+
+
 module.exports = router

@@ -184,3 +184,7 @@ a:hover {
   margin-top: 30px;
   backgroung: white;
 }
+
+.no-margin {
+  margin:0;
+}
