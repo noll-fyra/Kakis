@@ -12,7 +12,9 @@
         <div>
           <% if (chatbox.firstuser.equals(user.id)) {%>
             <div>
-              <img src='<%=cloudinary.url(chatbox.seconduser.avatar, { width: 50, height: 50, crop: 'fill', gravity: 'face', radius: 'max' })%>'></img>
+              <a href='/user/member/<%= chatbox.seconduser._id %>'>
+                <img src='<%=cloudinary.url(chatbox.seconduser.avatar, { width: 50, height: 50, crop: 'fill', gravity: 'face', radius: 'max' })%>'></img>
+              </a>
               <form  class='pull-right' action='/user/message' method='POST'>
                 <input name='id' hidden value='<%=chatbox.seconduser._id%>'>
                 <button class='glyphicon glyphicon-envelope'></button>
@@ -26,7 +28,9 @@
             </div>
           <% } else { %>
             <div>
-              <img src='<%=cloudinary.url(chatbox.firstuser.avatar, { width: 50, height: 50, crop: 'fill', gravity: 'face', radius: 'max' })%>'></img>
+              <a href='/user/member/<%= chatbox.firstuser._id %>'>
+                <img src='<%=cloudinary.url(chatbox.firstuser.avatar, { width: 50, height: 50, crop: 'fill', gravity: 'face', radius: 'max' })%>'></img>
+              </a>
               <form  class='pull-right' action='/user/message' method='POST'>
                 <input name='id' hidden value='<%=chatbox.firstuser._id%>'>
                 <button class='glyphicon glyphicon-envelope'></button>
